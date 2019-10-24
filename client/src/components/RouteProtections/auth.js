@@ -4,27 +4,26 @@
 class Auth {
     constructor() {
         this.authenticated = false;
-        this.token - undefined;
+        this.token = undefined;
     }
 // here we may want to consider having the callback be local storage
     login(token, cb) {
-        this.token = token;
-        this.authenticated = true;
+        localStorage.setItem("safe-token", token);
         cb()
     }
 
     logout(cb) {
-        this.token - undefined;
-        this.authenticated = false;
+        localStorage.setItem("safe-token", "");
         cb()
     }
 
     getToken(){
-        return this.token;
+        return localStorage.getItem("safe-token");
     }
 
     isAuthenticated() {
-        return this.authenticated; 
+        if (localStorage.getItem("safe-token")) return true
+        return false;
     }
 }
 
