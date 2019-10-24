@@ -68,7 +68,7 @@ function InputForm() {
           onChange={event => setConfirm(event.target.value)}
         />
       </label>
-      <label>
+      {/* <label>
         <h2>Pin:</h2>
         <input
           className="pin"
@@ -77,7 +77,7 @@ function InputForm() {
           value={pin}
           onChange={event => setPin(event.target.value)}
         />
-      </label>
+      </label> */}
       <label>
         <h2>Contact First Name:</h2>
         <input
@@ -158,19 +158,7 @@ function InputForm() {
               })
               .then(response => {
                 auth.login(response.token, () => {
-                  return (
-                    <Route
-                      render={props => {
-                          return (
-                            <Redirect
-                              to={{
-                                pathname: ("/main")
-                              }}
-                            />
-                          );
-                        }}
-                    ></Route>
-                  );
+                  window.location.replace("/main")
                 });
               })
               .catch(err => console.log(err));
