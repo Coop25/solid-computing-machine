@@ -157,9 +157,8 @@ function InputForm() {
                 return response.json();
               })
               .then(response => {
-                console.log(response);
                 auth.login(response.token, () => {
-                  return this.props.history.push("/home");
+                  window.location = "/home"
                 });
               })
               .catch(err => console.log(err));
