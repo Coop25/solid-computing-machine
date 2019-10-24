@@ -1,11 +1,20 @@
-import React from "react";
-import "./SOS.css";
+import React, {useState} from 'react';
+import Countdown from 'react-countdown-now';
 import auth from "../RouteProtections/auth";
+import "./Timer.css";
+ 
 
-function SOS (){
+
+function Timer(){
+
     return(
-        <button onClick={event=>{
-            event.preventDefault();
+        <div className="ourTimer">
+        <>
+         <Countdown 
+         date={Date.now() + 60000 * 2} 
+         autoStart={false}
+         //coop, this is where you can tie in nexmo. its set for an alert right now
+         onComplete={() =>
             fetch("/api/alert", {
                 method: "POST",
                 headers: {
@@ -24,8 +33,11 @@ function SOS (){
                 .catch(error => {
                   console.log(error);
                 })
-        }} className="sosButton">S.O.S</button>
+        }
+         />
+        </>
+        </div>
     )
 }
 
-export default SOS;
+export default Timer;
